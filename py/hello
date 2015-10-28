@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+"""this is my hello program"""
+
+import skilstak.colors as c
+import time
+
+def plain():
+    """Clears the screan and prints 'Hello world'."""
+    print(c.clear + c.rc() + "Hello world" + c.reset)
+
+def multi():
+    """Print 'Hello world' in multiple color like Christmas tree (or doge)."""
+    while True:
+        print(c.clear)
+        print(c.multi("Hello world"))
+        time.sleep(0.01)
+
+def color():
+    while True:
+        print(c.rc() + 'Hello world' + c.reset)
+
+def hello(kind='plain'):
+    """Main 'Hello world' function"""    
+    try:
+        if kind == 'color':
+            color()
+        elif kind.startswith('m'):  
+            multi()
+        else:
+            plain()
+    except KeyboardInterrupt:
+        return
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) > 1:
+        hello(sys.argv[1])
+    else:
+        hello()
